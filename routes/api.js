@@ -9,6 +9,5 @@ module.exports = function (app) {
 
   app.get('/api/convert', (req, res) => {
     const { input } = req.query;
-
   })
 };

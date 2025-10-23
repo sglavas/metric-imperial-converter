@@ -1,20 +1,47 @@
 function ConvertHandler() {
   
+  this.isValidUnit = function(input) {
+    let result = input.match(/^\d+(gal|l|lbs|kg|mi|km)$/i);
+
+    return result;
+  }
+
   this.getNum = function(input) {
-    let result;
+    let result = input.match(/\d+/)[0];
     
     return result;
   };
   
   this.getUnit = function(input) {
-    let result;
+    let result = input.match(/^\d+(gal|l|lbs|kg|mi|km)$/i)[1].toLowerCase();
     
     return result;
   };
   
   this.getReturnUnit = function(initUnit) {
     let result;
-    
+
+    switch(initUnit) {
+      case "gal":
+          result = "L";
+          break;
+      case "l":
+          result = "gal";
+          break;
+      case "lbs":
+          result = "kg";
+          break;
+      case "kg":
+          result = "lbs";
+          break;
+      case "mi":
+          result = "km";
+          break;
+      case "km":
+          result = "mi";
+          break;
+    }
+
     return result;
   };
 
