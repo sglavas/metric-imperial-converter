@@ -1,7 +1,7 @@
 function ConvertHandler() {
   
   this.isValidUnit = function(input) {
-    let result = input.match(/^\d+(gal|l|lbs|kg|mi|km)$/i);
+    let result= input.match(/^((?!.*\d+(?:\.\d+){2})\d*\.?\d*\/?\d*\.?\d*)(gal|l|lbs|kg|mi|km)$/i);
 
     return result;
   }
@@ -13,7 +13,11 @@ function ConvertHandler() {
   };
   
   this.getUnit = function(input) {
-    let result = input.match(/^\d+(gal|l|lbs|kg|mi|km)$/i)[1].toLowerCase();
+    let result = input.match(/^(gal|l|lbs|kg|mi|km)$/i)[1].toLowerCase();
+
+    if(result === "l"){
+      return result.toUpperCase();
+    }
     
     return result;
   };
