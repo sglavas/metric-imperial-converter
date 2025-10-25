@@ -21,6 +21,6 @@ module.exports = function (app) {
       return;
     }
 
-    res.json({ initNum: validUnit[1], initUnit: validUnit[2], returnNum: "", returnUnit: "", string: "" })
+    res.json({ initNum: validUnit[1], initUnit: validUnit[2], returnNum: "", returnUnit: convertHandler.convert(validUnit[1], validUnit[2]), string: "" })
   })
 };
