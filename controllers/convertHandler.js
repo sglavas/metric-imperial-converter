@@ -1,28 +1,43 @@
 const math = require('mathjs');
 
 function ConvertHandler() {
-  
-  this.isValidUnit = function(input) {
-    // Check if the number is a whole number, decimal, franction or fractional input with decimal followed by unit
-    // The number input is optional
-    let result= input.match(/^((?!.*\d+(?:\.\d+){2})\d*\.?\d*\/?\d*\.?\d*)(gal|l|lbs|kg|mi|km)$/i);
-
-    return result;
-  }
 
   this.getNum = function(input) {
-    let result = input.match(/\d+/)[0];
-    
+    //Check if the number is a whole number, decimal, fraction or fraction with decimal
+    let result = input.match(/^(?!.*\d+(?:\.\d+){2})\d*\.?\d*\/?\d*\.?\d*/);
+
+    // Check if there are letters before any digit
+    if(input.match(/[a-z]\d/ig)){
+      return false;
+    }
+
+    // Check if the fraction has more than 1 slash
+    if((input.match(/\//g) || []).length > 1){
+      return false;
+    }
+
+    // If the fraction has 1 slash
+    if((input.match(/\//g) || []).length === 1){
+      //Ensure that there are numbers on both sides of the slash
+      const validFraction = input.match(/(?!.*\d+(?:\.\d+){2})\d*\.?\d*\/\d+\.?\d*/);
+
+      //If not, return false
+      if(!validFraction){
+        return false;
+      }
+    }
+        
     return result;
   };
   
   this.getUnit = function(input) {
-    let result = input.match(/^(gal|l|lbs|kg|mi|km)$/i)[1].toLowerCase();
+    let result = input.match(/(gal|l|lbs|kg|mi|km)$/i);
 
     // Capitalize l
     if(result === "l"){
       return result.toUpperCase();
     }
+
     
     return result;
   };
