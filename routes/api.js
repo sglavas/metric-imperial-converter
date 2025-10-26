@@ -11,13 +11,21 @@ module.exports = function (app) {
     // Get input from input field
     const { input } = req.query;
 
-    // Validate input
-    let validUnit = convertHandler.isValidUnit(input);
-    console.log(validUnit);
+    // Validate number and unit
+    if(!convertHandler.getNum(input) && !convertHandler.getUnit(input)){
+      console.log("invalid number and unit")
+      return;
+    };
 
-    // If input is not a valid unit
-    if(!validUnit){
-      res.send("invalid unit");
+    // Validate number
+    if(!convertHandler.getNum(input)){
+      console.log("invalid number")
+      return;
+    };
+
+    // Validate unit
+    if(!convertHandler.getUnit(input)){
+      console.log("invalid unit");
       return;
     }
 
