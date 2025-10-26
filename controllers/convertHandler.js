@@ -47,13 +47,22 @@ function ConvertHandler() {
   this.getUnit = function(input) {
     let result = input.match(/(gal|l|lbs|kg|mi|km)$/i);
 
+    // If no valid unit
+    if(result === null){
+      return;
+    }
+
+    // If the unit is valid
+    const finalUnit = result[1].toLowerCase();
+
+
     // Capitalize l
-    if(result === "l"){
-      return result.toUpperCase();
+    if(finalUnit === "l"){
+      return finalUnit.toUpperCase();
     }
 
     
-    return result;
+    return finalUnit;
   };
   
   this.getReturnUnit = function(initUnit) {
