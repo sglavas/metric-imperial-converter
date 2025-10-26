@@ -11,24 +11,44 @@ module.exports = function (app) {
     // Get input from input field
     const { input } = req.query;
 
+    const inputNumber = convertHandler.getNum(input);
+    const inputUnit = convertHandler.getUnit(input);
+
     // Validate number and unit
-    if(!convertHandler.getNum(input) && !convertHandler.getUnit(input)){
-      console.log("invalid number and unit")
+    if(!inputNumber && !inputUnit){
+      res.send("invalid number and unit");
       return;
     };
 
     // Validate number
-    if(!convertHandler.getNum(input)){
-      console.log("invalid number")
+    if(!inputNumber){
+      res.send("invalid number");
       return;
     };
 
     // Validate unit
-    if(!convertHandler.getUnit(input)){
-      console.log("invalid unit");
-      return;
+    if(!inputUnit){
+      res.send("invalid unit");
+      return
     }
 
-    res.json({ initNum: validUnit[1], initUnit: validUnit[2], returnNum: "", returnUnit: convertHandler.convert(validUnit[1], validUnit[2]), string: "" })
+    // Convert to metric/imperial value
+    const finalNumber = convertHandler.convert(inputNumber, inputUnit);
+    // Pair metric/imperial unit
+    const finalUnit = convertHandler.getReturnUnit(inputUnit);
+
+    // Get spelled-out units for the string message
+    const inputWholeUnit = convertHandler.spellOutUnit(inputUnit);
+    const finalWholeUnit = convertHandler.spellOutUnit(finalUnit);
+
+
+    res.json(
+      { 
+        initNum: inputNumber,
+        initUnit: inputUnit,
+        returnNum: finalNumber,
+        returnUnit: finalUnit,
+        string: convertHandler.getString(inputNumber, inputWholeUnit, finalNumber, finalWholeUnit)
+      });
   })
 };
