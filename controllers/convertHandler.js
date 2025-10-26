@@ -3,31 +3,45 @@ const math = require('mathjs');
 function ConvertHandler() {
 
   this.getNum = function(input) {
-    //Check if the number is a whole number, decimal, fraction or fraction with decimal
-    let result = input.match(/^(?!.*\d+(?:\.\d+){2})\d*\.?\d*\/?\d*\.?\d*/);
+    // Check if the number is missing
+    if(input.match(/^(gal|l|lbs|kg|mi|km)$/i)){
+      // If the number is missing, return the default number, i.e. 1
+      return 1;
+    }
 
+    //Check if the number is a whole number, decimal, fraction or fraction with decimal
+    let result = input.match(/^(?!.*\d+(?:\.\d+){2})\d*\.?\d*\/?\d*\.?\d*/)[0];
+    
+    
     // Check if there are letters before any digit
     if(input.match(/[a-z]\d/ig)){
       return false;
     }
-
+    
     // Check if the fraction has more than 1 slash
     if((input.match(/\//g) || []).length > 1){
       return false;
     }
-
+    
     // If the fraction has 1 slash
     if((input.match(/\//g) || []).length === 1){
       //Ensure that there are numbers on both sides of the slash
       const validFraction = input.match(/(?!.*\d+(?:\.\d+){2})\d*\.?\d*\/\d+\.?\d*/);
-
+      
       //If not, return false
       if(!validFraction){
         return false;
       }
     }
-        
-    return result;
+    
+    if(result == undefined){
+      result = 1;
+      return result;
+    }
+
+    const resultNum = eval(result);
+    
+    return resultNum;
   };
   
   this.getUnit = function(input) {
