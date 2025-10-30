@@ -39,9 +39,7 @@ function ConvertHandler() {
       return result;
     }
 
-    const resultNum = eval(result);
-    
-    return resultNum;
+    return result;
   };
   
   this.getUnit = function(input) {
