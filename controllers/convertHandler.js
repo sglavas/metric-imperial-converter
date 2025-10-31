@@ -40,7 +40,7 @@ function ConvertHandler() {
     }
 
 
-    const resultNum = eval(result)
+    const resultNum = math.evaluate(result)
 
 
     return resultNum;
