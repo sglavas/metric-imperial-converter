@@ -15,7 +15,7 @@ suite('Functional Tests', function() {
             .end((err, res) => {
                 let responseObject = JSON.parse(res.text);
                 assert.equal(res.status, 200);
-                assert.equal(responseObject.returnNum, 2.641721);
+                assert.equal(responseObject.returnNum, 2.64172);
                 assert.equal(responseObject.returnUnit, 'gal');
                 done();
             })

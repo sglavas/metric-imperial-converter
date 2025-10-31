@@ -39,15 +39,19 @@ function ConvertHandler() {
       return result;
     }
 
-    return result;
+
+    const resultNum = eval(result)
+
+
+    return resultNum.toString();
   };
   
   this.getUnit = function(input) {
     let result = input.match(/(gal|l|lbs|kg|mi|km)$/i);
 
     // If no valid unit
-    if(result === null){
-      return;
+    if(!result){
+      return undefined;
     }
 
     // If the unit is valid
@@ -56,7 +60,8 @@ function ConvertHandler() {
 
     // Capitalize l
     if(finalUnit === "l"){
-      return finalUnit.toUpperCase();
+      return "L"
+      //return finalUnit.toUpperCase();
     }
 
     
@@ -130,27 +135,43 @@ function ConvertHandler() {
     // Match the unit and handle conversion
     switch(initUnit) {
           case "gal":
-              result = math.evaluate(`${initNum} gal to l`);
+              result = initNum * galToL;
+              //result = math.multiply(initNum, galToL);
+              //result = math.evaluate(`${initNum} gal to l`);
               break;
           case "l":
           case "L":
-              result = math.evaluate(`${initNum} l to gal`);
+              result = initNum / galToL;
+              //result = math.divide(initNum, galToL);
+              //result = math.evaluate(`${initNum} l to gal`);
               break;
           case "lbs":
-              result = math.evaluate(`${initNum} lbs to kg`);
+              result = initNum * lbsToKg;
+              //result = math.multiply(initNum, lbsToKg);
+              //result = math.evaluate(`${initNum} lbs to kg`);
               break;
           case "kg":
-              result = math.evaluate(`${initNum} kg to lbs`);
+              result = initNum / lbsToKg;
+              //result = math.divide(initNum, lbsToKg);
+              //result = math.evaluate(`${initNum} kg to lbs`);
               break;
           case "mi":
-              result = math.evaluate(`${initNum} mi to km`);
+              result = initNum * miToKm;
+              //result = math.multiply(initNum, miToKm);
+              //result = math.evaluate(`${initNum} mi to km`);
               break;
           case "km":
-              result = math.evaluate(`${initNum} km to mi`);
+              result = initNum / miToKm;
+              //result = math.divide(initNum, miToKm);
+              //result = math.evaluate(`${initNum} km to mi`);
               break;
     }
-    // Round the number to 6 decimal points
-    let roundedNumber = math.round(result.toNumber(), 6);
+
+    let roundedNumber = math.round(result, 5);
+
+
+    // Round the number to 5 decimal points
+    //let roundedNumber = math.round(result.toNumber(), 5);
 
     return roundedNumber;
   };

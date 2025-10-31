@@ -7,19 +7,19 @@ let convertHandler = new ConvertHandler();
 suite('Number Tests', function(){
     // #1
     test('convertHandler should correctly read a whole number input', () => {
-        assert.equal(convertHandler.getNum('5gal'), '5', 'The function correctly reads a whole number')
+        assert.equal(convertHandler.getNum('5gal'), 5, 'The function correctly reads a whole number')
     })
     // #2
     test('convertHandler should correctly read a decimal number input', () => {
-        assert.equal(convertHandler.getNum('5.5gal'), '5.5', 'The function correctly reads a decimal number')
+        assert.equal(convertHandler.getNum('5.5gal'), 5.5, 'The function correctly reads a decimal number')
     })
     // #3
     test('convertHandler should correctly read a fractional input', () => {
-        assert.equal(convertHandler.getNum('5/5gal'), '5/5', 'The function correctly reads a fraction')
+        assert.equal(convertHandler.getNum('5/5gal'), 1, 'The function correctly reads a fraction')
     })
     // #4
     test('convertHandler should correctly read a fractional input with a decimal', () => {
-        assert.equal(convertHandler.getNum('5.5/5gal'), '5.5/5', 'The function correctly reads a fraction with a decimal')
+        assert.equal(convertHandler.getNum('5.5/5gal'), 1.1, 'The function correctly reads a fraction with a decimal')
     })
     // #5
     test('convertHandler  should correctly return an error on a double-fraction', () => {
@@ -27,7 +27,7 @@ suite('Number Tests', function(){
     })
     // #6
     test('convertHandler should correctly default to a numerical input of 1 when no numerical input is provided', () => {
-        assert.equal(convertHandler.getNum('gal'), '1', 'The function returns a 1 when no number is provided')
+        assert.equal(convertHandler.getNum('gal'), 1, 'The function returns a 1 when no number is provided')
     })
 });
 
