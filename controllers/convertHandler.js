@@ -43,7 +43,7 @@ function ConvertHandler() {
     const resultNum = eval(result)
 
 
-    return resultNum.toString();
+    return resultNum;
   };
   
   this.getUnit = function(input) {
