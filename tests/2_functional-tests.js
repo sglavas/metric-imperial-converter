@@ -7,7 +7,7 @@ chai.use(chaiHttp);
 
 suite('Functional Tests', function() {
     // #1
-    test('Test GET /api/convert with 10L', (done) => {
+    test('#1 Test GET /api/convert with 10L', (done) => {
         chai
             .request(server)
             .keepOpen()
@@ -21,7 +21,7 @@ suite('Functional Tests', function() {
             })
     })
     // #2
-    test('Test GET /api/convert with invalid input 32g', (done) => {
+    test('#2 Test GET /api/convert with invalid input 32g', (done) => {
         chai
             .request(server)
             .keepOpen()
@@ -33,7 +33,7 @@ suite('Functional Tests', function() {
             })
     })
     // #3
-    test('Test GET /api/convert with invalid number 3/7.2/4kg', (done) => {
+    test('#3 Test GET /api/convert with invalid number 3/7.2/4kg', (done) => {
         chai
             .request(server)
             .keepOpen()
@@ -45,7 +45,7 @@ suite('Functional Tests', function() {
             })
     })
     // #4
-    test('Test GET /api/convert with invalid number and unit, 3/7.2/4kilomegagram', (done) => {
+    test('#4 Test GET /api/convert with invalid number and unit, 3/7.2/4kilomegagram', (done) => {
         chai
             .request(server)
             .keepOpen()
@@ -57,7 +57,7 @@ suite('Functional Tests', function() {
             })
     })
     // #5
-    test('Test GET /api/convert with no number, e.g. "kg"', (done) => {
+    test('#5 Test GET /api/convert with no number, e.g. "kg"', (done) => {
         chai
             .request(server)
             .keepOpen()

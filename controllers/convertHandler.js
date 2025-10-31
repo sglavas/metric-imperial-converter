@@ -71,8 +71,10 @@ function ConvertHandler() {
   this.getReturnUnit = function(initUnit) {
     let result;
 
+    const lowerCaseUnit = initUnit.toLowerCase();
+
     // Convert initial unit to return unit
-    switch(initUnit) {
+    switch(lowerCaseUnit) {
       case "gal":
           result = "L";
           break;
@@ -100,8 +102,10 @@ function ConvertHandler() {
   this.spellOutUnit = function(unit) {
     let result;
 
+    const lowerCaseUnit = unit.toLowerCase();
+
     // Match unit to full name
-    switch(unit) {
+    switch(lowerCaseUnit) {
       case "gal":
           result = "gallons";
           break;
@@ -132,8 +136,10 @@ function ConvertHandler() {
     const miToKm = 1.60934;
     let result;
 
+    const lowerCaseUnit = initUnit.toLowerCase();
+
     // Match the unit and handle conversion
-    switch(initUnit) {
+    switch(lowerCaseUnit) {
           case "gal":
               result = initNum * galToL;
               //result = math.multiply(initNum, galToL);
