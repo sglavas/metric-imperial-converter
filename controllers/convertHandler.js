@@ -173,7 +173,7 @@ function ConvertHandler() {
               break;
     }
 
-    let roundedNumber = math.round(result, 5);
+    let roundedNumber = result.toFixed(5);
 
 
     // Round the number to 5 decimal points
